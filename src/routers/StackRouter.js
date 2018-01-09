@@ -214,17 +214,18 @@ export default (
               action,
               initChildRoute
             );
-            let routeToPush = null;
             if (navigatedChildRoute === null) {
               // Push the route if the router has 'handled' the action and returned null
-              routeToPush = initChildRoute;
-            } else if (navigatedChildRoute !== initChildRoute) {
-              // Push the route if the state has changed in response to this navigation
-              routeToPush = navigatedChildRoute;
-            }
-            if (routeToPush) {
               return StateUtils.push(state, {
-                ...routeToPush,
+                ...initChildRoute,
+                key: _getUuid(),
+                routeName: childRouterName,
+              });
+            } else if (navigatedChildRoute !== initChildRoute) {
+              //without init
+              const navigatedRoute = childRouter.getStateForAction(action);
+              return StateUtils.push(state, {
+                ...navigatedRoute,
                 key: _getUuid(),
                 routeName: childRouterName,
               });
