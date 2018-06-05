@@ -2,6 +2,11 @@
  * @flow
  */
 
+import type {
+  NavigationScreenProp,
+  NavigationEventSubscription,
+} from 'react-navigation';
+
 import React from 'react';
 import { Button, Platform, ScrollView, StatusBar, View } from 'react-native';
 import { SafeAreaView, TabNavigator } from 'react-navigation';
@@ -43,35 +48,45 @@ MyHomeScreen.navigationOptions = {
   ),
 };
 
-const MyPeopleScreen = ({ navigation }) => (
-  <MyNavScreen banner="People Tab" navigation={navigation} />
-);
-
-MyPeopleScreen.navigationOptions = {
-  tabBarLabel: 'People',
-  tabBarIcon: ({ tintColor, focused }) => (
-    <Ionicons
-      name={focused ? 'ios-people' : 'ios-people-outline'}
-      size={26}
-      style={{ color: tintColor }}
-    />
-  ),
+type MyPeopleScreenProps = {
+  navigation: NavigationScreenProp<*>,
 };
+class MyPeopleScreen extends React.Component<MyPeopleScreenProps> {
+  static navigationOptions = {
+    tabBarLabel: 'People',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <Ionicons
+        name={focused ? 'ios-people' : 'ios-people-outline'}
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+  };
+  render() {
+    const { navigation } = this.props;
+    return <MyNavScreen banner="People Tab" navigation={navigation} />;
+  }
+}
 
-const MyChatScreen = ({ navigation }) => (
-  <MyNavScreen banner="Chat Tab" navigation={navigation} />
-);
-
-MyChatScreen.navigationOptions = {
-  tabBarLabel: 'Chat',
-  tabBarIcon: ({ tintColor, focused }) => (
-    <Ionicons
-      name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
-      size={26}
-      style={{ color: tintColor }}
-    />
-  ),
+type MyChatScreenProps = {
+  navigation: NavigationScreenProp<*>,
 };
+class MyChatScreen extends React.Component<MyChatScreenProps> {
+  static navigationOptions = {
+    tabBarLabel: 'Chat',
+    tabBarIcon: ({ tintColor, focused }) => (
+      <Ionicons
+        name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+        size={26}
+        style={{ color: tintColor }}
+      />
+    ),
+  };
+  render() {
+    const { navigation } = this.props;
+    return <MyNavScreen banner="Chat Tab" navigation={navigation} />;
+  }
+}
 
 const MySettingsScreen = ({ navigation }) => (
   <MyNavScreen banner="Settings Tab" navigation={navigation} />
@@ -108,6 +123,8 @@ const SimpleTabs = TabNavigator(
     },
   },
   {
+    lazy: true,
+    removeClippedSubviews: true,
     tabBarOptions: {
       activeTintColor: Platform.OS === 'ios' ? '#e91e63' : '#fff',
     },

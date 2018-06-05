@@ -6,10 +6,7 @@ import { Image, Platform, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
 const Banner = () => (
-  <SafeAreaView
-    style={styles.bannerContainer}
-    forceInset={{ vertical: 'never' }}
-  >
+  <SafeAreaView style={styles.bannerContainer} forceInset={{ top: 'always' }}>
     <View style={styles.banner}>
       <Image source={require('./assets/NavLogo.png')} style={styles.image} />
       <Text style={styles.title}>React Navigation Examples</Text>

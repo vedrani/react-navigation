@@ -55,13 +55,23 @@ exports[`TabNavigator renders successfully 1`] = `
       testID={undefined}
     >
       <View
+        collapsable={false}
+        removeClippedSubviews={false}
         style={
           Object {
             "flex": 1,
             "overflow": "hidden",
           }
         }
-      />
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
     </View>
   </View>
   <View
@@ -71,6 +81,7 @@ exports[`TabNavigator renders successfully 1`] = `
     <View
       collapsable={undefined}
       onLayout={[Function]}
+      pointerEvents="box-none"
       style={
         Object {
           "backgroundColor": "#F7F7F7",
@@ -126,9 +137,15 @@ exports[`TabNavigator renders successfully 1`] = `
         >
           <View
             style={
-              Object {
-                "flexGrow": 1,
-              }
+              Array [
+                Object {
+                  "height": 29,
+                },
+                false,
+                Object {
+                  "flex": 1,
+                },
+              ]
             }
           >
             <View
@@ -136,13 +153,13 @@ exports[`TabNavigator renders successfully 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "bottom": 0,
+                  "alignSelf": "center",
+                  "height": "100%",
                   "justifyContent": "center",
-                  "left": 0,
+                  "minWidth": 30,
                   "opacity": 1,
                   "position": "absolute",
-                  "right": 0,
-                  "top": 0,
+                  "width": "100%",
                 }
               }
             />
@@ -151,13 +168,13 @@ exports[`TabNavigator renders successfully 1`] = `
               style={
                 Object {
                   "alignItems": "center",
-                  "bottom": 0,
+                  "alignSelf": "center",
+                  "height": "100%",
                   "justifyContent": "center",
-                  "left": 0,
+                  "minWidth": 30,
                   "opacity": 0,
                   "position": "absolute",
-                  "right": 0,
-                  "top": 0,
+                  "width": "100%",
                 }
               }
             />
@@ -167,6 +184,7 @@ exports[`TabNavigator renders successfully 1`] = `
             allowFontScaling={true}
             collapsable={undefined}
             ellipsizeMode="tail"
+            numberOfLines={1}
             style={
               Object {
                 "backgroundColor": "transparent",
